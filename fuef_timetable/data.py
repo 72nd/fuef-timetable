@@ -63,7 +63,7 @@ class Entry:
         else:
             duration = 15
         if not debug:
-            now = datetime.now()
+            now = datetime.datetime.now()
         else:
             now = datetime.datetime(
                 year=2022,

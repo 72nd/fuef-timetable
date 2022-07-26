@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta http-equiv="refresh" content="30">
 		<title>FüF Timetable</title>
 		<link rel="stylesheet" href="static/pico.min.css">
 		<link rel="stylesheet" href="static/style.css">
@@ -15,6 +16,7 @@
 				<div><h1 class="headline">Programm</h1></div>
 				<div><img src="static/logo.png" class="logo"/></div>
 			</div>
+			{% if entries is defined and entries|length > 0 %}
 			<table>
 				<thead>
 					<tr>
@@ -41,6 +43,9 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			{% else %}
+			<p><small><i>Das wars für heute, rebot/robot.</i></small></p>
+			{% endif %}
 			<p>
 			<b><u>Die ganze Zeit:</u></b>
 			<b>Lindenlaube</b> Thomas Rusch: Digital Zen —
