@@ -20,25 +20,25 @@
 			<table>
 				<thead>
 					<tr>
-						<th scope="col" style="font-size: 20px;"></th>
-						<th scope="col" style="font-size: 20px;">Zeit</th>
-						<th scope="col" style="font-size: 20px;">Künstler:in</th>
-						<th scope="col" style="font-size: 20px;">Titel</th>
-						<th scope="col" style="font-size: 20px;">Ort</th>
-						<th scope="col" style="font-size: 20px;">Genre</th>
-						<th scope="col" style="font-size: 20px;">Dauer</th>
+						<th scope="col" style="font-size: 25px;"></th>
+						<th scope="col" style="font-size: 25px;">Zeit</th>
+						<th scope="col" style="font-size: 25px;">Künstler:in</th>
+						<th scope="col" style="font-size: 25px;">Titel</th>
+						<th scope="col" style="font-size: 25px;">Ort</th>
+						<th scope="col" style="font-size: 25px;">Genre</th>
+						<th scope="col" style="font-size: 25px;">Dauer</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for entry in entries %}
 					<tr>
-						<td style="font-size: 20px;">{% if entry.is_now %}→{% endif %}</td>
-						<td style="font-size: 20px;">{{ entry.when.strftime("%H:%M") }}</td>
-						<th scope="row" style="font-size: 20px;">{{ entry.artist}}</th>
-						<td style="font-size: 20px;">{{ entry.title }}</td>
-						<td style="font-size: 20px;">{{ entry.place}}</td>
-						<td style="font-size: 20px;">{{ entry.genre }}</td>
-						<td style="font-size: 20px;">{{ entry.duration}} Min</td>
+						<td style="font-size: 25px;">{% if entry.is_now %}→{% endif %}</td>
+						<td style="font-size: 25px;">{{ entry.when.strftime("%H:%M") }}</td>
+						<th scope="row" style="font-size: 25px;">{{ entry.artist}}</th>
+						<td style="font-size: 25px;">{{ entry.title }}</td>
+						<td style="font-size: 25px;">{{ entry.place}}</td>
+						<td style="font-size: 25px;">{{ entry.genre }}</td>
+						<td style="font-size: 25px;">{{ entry.duration}} Min</td>
 					</tr>
 					{% endfor %}
 				</tbody>
@@ -53,56 +53,56 @@
 				<li class="slide showing">
 					<div class="grid">
   						<div><img width="50%" src="static/images/thomas.jpg" alt="No picture"></div>
-  						<div style="font-size: 20px;"><b>Rittersaal</b> Thomas Rusch: Digital Zeny</div>
+  						<div style="font-size: 25px;"><b>Rittersaal</b> Thomas Rusch: Digital Zeny</div>
 					</div>
 				</li>
 
 	                        <li class="slide">
                                         <div class="grid">
                                                 <div><img width="50%" src="static/images/fock.jpg" alt="No picture"></div>
-                                                <div style="font-size: 20px;"><b>Galerie</b> Jan Fock: Hausbesuche. Extended Mind, Silvi: Portraits aus dem Fläming, Kanaltheater: Dialog erwünscht, Farbianart: Naturszene</div>
+                                                <div style="font-size: 25px;"><b>Galerie</b> Jan Fock: Hausbesuche. Extended Mind, Silvi: Portraits aus dem Fläming, Kanaltheater: Dialog erwünscht, Farbianart: Naturszene</div>
                                         </div>
                                 </li>
 
                                 <li class="slide">
                                         <div class="grid">
                                                 <div><img width="50%" src="static/images/ying.jpg" alt="No picture"></div>
-                                                <div style="font-size: 20px;"><b>Kino</b> Yu Ying: Bon Apetitte</div>
+                                                <div style="font-size: 25px;"><b>Kino</b> Yu Ying: Bon Apetitte</div>
                                         </div>
                                 </li>
 
                                 <li class="slide">
                                         <div class="grid">
                                                 <div><img width="50%" src="static/images/farbian.jpg" alt="No picture"></div>
-                                                <div style="font-size: 20px;"><b>Theaterstall</b> Farbianart: Naturszenen, LPG Ausstellung</div>
+                                                <div style="font-size: 25px;"><b>Theaterstall</b> Farbianart: Naturszenen, LPG Ausstellung</div>
                                         </div>
                                 </li>
 
                                 <li class="slide">
                                         <div class="grid">
                                                 <div><img width="50%" src="static/images/adam.jpg" alt="No picture"></div>
-                                                <div style="font-size: 20px;"><b>Überall</b> Adam und die Physiker: Apocalypse Escape</div>
+                                                <div style="font-size: 25px;"><b>Überall</b> Adam und die Physiker: Apocalypse Escape</div>
                                         </div>
                                 </li>
 
                                 <li class="slide">
                                         <div class="grid">
                                                 <div><img width="50%" src="static/images/filme.jpg" alt="No picture"></div>
-                                                <div style="font-size: 20px;"><b>Dschungel</b> Fläminger Filmfestival: Fläminer Filme</div>
+                                                <div style="font-size: 25px;"><b>Dschungel</b> Fläminger Filmfestival: Fläminer Filme</div>
                                         </div>
                                 </li>
 
                                 <li class="slide">
                                         <div class="grid">
                                                 <div><img width="50%" src="static/images/lpg.jpg" alt="No picture"></div>
-                                                <div style="font-size: 20px;"><b>Theaterstall</b> LPG. Dahnsdorfer Geschichten</div>
+                                                <div style="font-size: 25px;"><b>Theaterstall</b> LPG. Dahnsdorfer Geschichten</div>
                                         </div>
                                 </li>
 
                                 <li class="slide">
                                         <div class="grid">
                                                 <div><img width="50%" src="static/images/fuef.jpg" alt="No picture"></div>
-                                                <div style="font-size: 20px;"><b>Ferkelstall</b> Jubiläumsausstellung. 10 Jahre Festival für Freunde, Digival</div>
+                                                <div style="font-size: 25px;"><b>Ferkelstall</b> Jubiläumsausstellung. 10 Jahre Festival für Freunde, Digival</div>
                                         </div>
                                 </li>
 			</ul>	
