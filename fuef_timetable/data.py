@@ -40,7 +40,7 @@ class Data:
             if entry.when >= now or entry.is_now_fn(debug):
                 print(1)
                 tmp.append(entry)
-        return tmp[:5]
+        return tmp[:2]
 
 
 class Entry:
