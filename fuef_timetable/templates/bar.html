@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta http-equiv="refresh" content="30">
+		<title>FüF Timetable</title>
+		<link rel="stylesheet" href="static/pico.min.css">
+		<link rel="stylesheet" href="static/style.css">
+	</head>
+	<body>
+		<!-- <script src="index.js"></script> -->
+		<main class="container">
+			<div class="grid">
+				<div><h1 class="headline">Programm</h1></div>
+				<div><img src="static/logo.png" class="logo"/></div>
+			</div>
+			{% if entries is defined and entries|length > 0 %}
+			<table>
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">Zeit</th>
+						<th scope="col">Künstler:in</th>
+						<th scope="col">Titel</th>
+						<th scope="col">Ort</th>
+						<th scope="col">Genre</th>
+						<th scope="col">Dauer</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for entry in entries %}
+					<tr>
+						<td>{% if entry.is_now %}→{% endif %}</td>
+						<td>{{ entry.when.strftime("%H:%M") }}</td>
+						<th scope="row">{{ entry.artist}}</th>
+						<td>{{ entry.title }}</td>
+						<td>{{ entry.place}}</td>
+						<td>{{ entry.genre }}</td>
+						<td>{{ entry.duration}} Min</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% else %}
+			<p><small><i>Das wars für heute, rebot/robot.</i></small></p>
+			{% endif %}
+			<p>
+			<b><u>Die ganze Zeit:</u></b>
+			<b>Rittersaal</b> Thomas Rusch: Digital Zen —
+			<b>Galerie</b> Jan Fock: Hausbesuche. Extended Mind, Silvi: Portraits aus dem Fläming, Kanaltheater: Dialog erwünscht, Farbianart: Naturszene —
+			<b>Kino</b> Yu Ying: Bon Apetitte —
+			<b>Theaterstall</b> Farbianart: Naturszenen, LPG Ausstellung —
+			<b>Überall</b> Adam und die Physiker: Apocalypse Escape —
+			<b>Dschungel</b> Fläminger Filmfestival: Fläminer Filme —
+			<b>Dschungel</b> Fläminger Filmfestival: Fläminer Filme —
+			<b>Theaterstall</b> LPG. Dahnsdorfer Geschichten —
+			<b>Ferkelstall</b> Jubiläumsausstellung. 10 Jahre Festival für Freunde, Digival
+			</p>
+		</main>
+	</body>
+</html>
