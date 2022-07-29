@@ -11,7 +11,8 @@ class Data:
         self,
         path: str,
         today: bool = False,
-        debug: bool = False
+        debug: bool = False,
+        bar: bool = False,
     ):
         wb = load_workbook(filename=path)
         sheet = wb["Acts"]
