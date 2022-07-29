@@ -29,11 +29,18 @@ class Data:
             if today and entry.when.date() != today_date:
                 continue
             self.entries.append(entry)
+        if bar:
+            self.entries = self.bar_stuff(debug)
 
-    def determine_now(self):
-        """Determines which entry currently happens."""
+    def bar_stuff(self, debug: bool):
+        """Mess with the best, die like the rest."""
+        now = datetime.datetime.now()
+        tmp = []
         for entry in self.entries:
-            pass
+            if entry.when >= now or entry.is_now_fn(debug):
+                print(1)
+                tmp.append(entry)
+        return tmp[:5]
 
 
 class Entry:
@@ -49,12 +56,12 @@ class Entry:
         self.place = self.get_value(sheet, row_index, 5)
         self.duration = self.get_value(sheet, row_index, 6)
         self.genre = self.get_value(sheet, row_index, 7)
-        self.is_now = self.is_now(debug)
+        self.is_now = self.is_now_fn(debug)
 
         # print(ends)
         self.is_valid = True
 
-    def is_now(self, debug: bool) -> bool:
+    def is_now_fn(self, debug: bool) -> bool:
         """
         Determines wether an event is currently happening.
         Inkl. 10 Minutes before.
