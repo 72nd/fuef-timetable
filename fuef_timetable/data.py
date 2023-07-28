@@ -2,7 +2,10 @@ from openpyxl import load_workbook
 
 import datetime
 from typing import List
-
+from nocodb.nocodb import NocoDBProject, APIToken, JWTAuthToken
+from nocodb.filters.raw_filter import RawFilter
+from nocodb.infra.requests_client import NocoDBRequestsClient
+from dotenv import dotenv_values
 
 class Data:
     """Collection of entries."""
@@ -14,6 +17,28 @@ class Data:
         debug: bool = False,
         bar: bool = False,
     ):
+
+        env = dotenv_values('.env')
+
+        # Usage with API Token
+        client = NocoDBRequestsClient(
+            # Your API Token retrieved from NocoDB conf
+            APIToken(env["API-TOKEN"]),
+            # Your nocodb root path
+            env["URL"]
+        )
+
+        project = NocoDBProject(
+            env["ORGANISATION"],
+            env["PROJECT"]
+        )
+
+        table_name = env["TABLE"]
+
+        table_rows = client.table_row_list(project, table_name, RawFilter('(when,eq,exactDate,03-08-2023)'))
+
+        print(table_rows)
+
         wb = load_workbook(filename=path)
         sheet = wb["Acts"]
 
