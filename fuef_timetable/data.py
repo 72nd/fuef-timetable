@@ -69,9 +69,9 @@ class Entry:
     def __init__(self, element):
         if element["when"]:
             self.when = datetime.datetime.strptime(element["when"], "%Y-%m-%d %H:%M:%S%z")
-        if not isinstance(self.when, datetime.datetime):
-            self.is_valid = False
-            return
+            if not isinstance(self.when, datetime.datetime):
+                self.is_valid = False
+                return
         if element["artist"]:
             if not (element["artist"][0] is None):
                 self.artist = element["artist"][0]
