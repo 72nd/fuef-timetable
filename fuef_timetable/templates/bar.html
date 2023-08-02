@@ -46,7 +46,7 @@
 										<td style="font-size: 40px; color: white;">{{ entry.place}}</td>
 										<td style="font-size: 40px; color: white;">{{ entry.genre }}</td>
 										{% if entry.duration %}
-										<td style="font-size: 40px; color: white;">{{ ((entry.duration | int) / 60 | int | abs) }} Min</td>
+										<td style="font-size: 40px; color: white;">{{ ((entry.duration | int) / 60 | round | int ) }} Min</td>
 										{% else %}
 										<td style="font-size: 40px; color: white;"></td>
 										{% endif %}
