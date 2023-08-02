@@ -36,21 +36,23 @@
 								</thead>
 								<tbody>
 									{% for entry in entries %}
-									<tr>
-										<td style="font-size: 40px; color: white;">{% if entry.is_now %}→{% endif %}</td>
 										{% if entry.when %}
-											<td style="font-size: 40px; color: white;">{{ entry.when.strftime("%H:%M") }}</td>
+											<tr>
+												<td style="font-size: 40px; color: white;">{% if entry.is_now %}→{% endif %}</td>
+												{% if entry.when %}
+													<td style="font-size: 40px; color: white;">{{ entry.when.strftime("%H:%M") }}</td>
+												{% endif %}
+												<th scope="row" style="font-size: 40px; color: white;">{{ entry.artist}}</th>
+												<td style="font-size: 40px; color: white;">{{ entry.title }}</td>
+												<td style="font-size: 40px; color: white;">{{ entry.place}}</td>
+												<td style="font-size: 40px; color: white;">{{ entry.genre }}</td>
+												{% if entry.duration %}
+												<td style="font-size: 40px; color: white;">{{ (((entry.duration | int) / 60) | round | int ) }} Min</td>
+												{% else %}
+												<td style="font-size: 40px; color: white;"></td>
+												{% endif %}
+											</tr>
 										{% endif %}
-										<th scope="row" style="font-size: 40px; color: white;">{{ entry.artist}}</th>
-										<td style="font-size: 40px; color: white;">{{ entry.title }}</td>
-										<td style="font-size: 40px; color: white;">{{ entry.place}}</td>
-										<td style="font-size: 40px; color: white;">{{ entry.genre }}</td>
-										{% if entry.duration %}
-										<td style="font-size: 40px; color: white;">{{ (((entry.duration | int) / 60) | round | int ) }} Min</td>
-										{% else %}
-										<td style="font-size: 40px; color: white;"></td>
-										{% endif %}
-									</tr>
 									{% endfor %}
 								</tbody>
 							</table>

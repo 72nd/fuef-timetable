@@ -1,6 +1,7 @@
 from openpyxl import load_workbook
 
 import datetime
+import pytz
 from typing import List
 from nocodb.nocodb import NocoDBProject, APIToken, JWTAuthToken
 from nocodb.filters.raw_filter import RawFilter
@@ -68,7 +69,7 @@ class Entry:
 
     def __init__(self, element):
         if element["when"]:
-            self.when = datetime.datetime.fromisoformat(element["when"])
+            self.when = datetime.datetime.fromisoformat(element["when"]).astimezone(pytz.timezone('CET'))
             if not isinstance(self.when, datetime.datetime):
                 self.is_valid = False
                 return
