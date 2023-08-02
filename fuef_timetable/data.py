@@ -44,8 +44,11 @@ class Data:
             today_date = datetime.date(year=2023, month=8, day=3)
 
         for element in table_rows["list"]:
-            if datetime.datetime.strftime(today_date, "%Y-%m-%d") in element["when"]:
-                print(element)
+            if element["when"]:
+                if datetime.datetime.strftime(today_date, "%Y-%m-%d") in element["when"]:
+                    entry = Entry(element)
+                    self.entries.append(entry)
+            else:
                 entry = Entry(element)
                 self.entries.append(entry)
 
