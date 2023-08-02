@@ -78,7 +78,7 @@ class Entry:
         if element["location"]:
             if not (element["location"][0] is None):
                 self.place = element["location"][0]["name"]
-        if element["duration"]:
+        if element["duration"] and element["when"]:
             if not(element["duration"][0] is None):
                 self.duration = element["duration"][0]
                 self.endtime = self.when + datetime.timedelta(0,int(self.duration))
