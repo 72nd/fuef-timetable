@@ -12,10 +12,7 @@ class Data:
 
     def __init__(
         self,
-        path: str,
-        today: bool = False,
-        debug: bool = False,
-        bar: bool = False,
+        debug: bool = False
     ):
 
         env = dotenv_values('.env')
@@ -35,27 +32,22 @@ class Data:
 
         table_name = env["TABLE"]
 
-        table_rows = client.table_row_list(project, table_name, RawFilter('(when,eq,exactDate,03-08-2023)'))
+        table_rows = client.table_row_list(project, table_name)
 
-        print(table_rows)
-
-        wb = load_workbook(filename=path)
-        sheet = wb["Acts"]
+#        wb = load_workbook(filename=path)
+#        sheet = wb["Acts"]
 
         self.entries: List[Entry] = []
         if not debug:
             today_date = datetime.date.today()
         else:
-            today_date = datetime.date(year=2022, month=7, day=28)
-        for i in range(3, sheet.max_row+1):
-            entry = Entry(sheet, i, debug)
-            if not entry.is_valid:
-                continue
-            if today and entry.when.date() != today_date:
-                continue
-            self.entries.append(entry)
-        if bar:
-            self.entries = self.bar_stuff(debug)
+            today_date = datetime.date(year=2023, month=8, day=3)
+
+        for element in table_rows["list"]:
+            if datetime.datetime.strftime(today_date, "%Y-%m-%d") in element["when"]:
+                print(element)
+                entry = Entry(element)
+                self.entries.append(entry)
 
     def bar_stuff(self, debug: bool):
         """Mess with the best, die like the rest."""
@@ -71,17 +63,29 @@ class Data:
 class Entry:
     """A single entry."""
 
-    def __init__(self, sheet, row_index, debug):
-        self.when = sheet.cell(row=row_index, column=1).value
+    def __init__(self, element):
+        if element["when"]:
+            self.when = datetime.datetime.strptime(element["when"], "%Y-%m-%d %H:%M:%S%z")
         if not isinstance(self.when, datetime.datetime):
             self.is_valid = False
             return
-        self.artist = self.get_value(sheet, row_index, 2)
-        self.title = self.get_value(sheet, row_index, 3)
-        self.place = self.get_value(sheet, row_index, 5)
-        self.duration = self.get_value(sheet, row_index, 6)
-        self.genre = self.get_value(sheet, row_index, 7)
-        self.is_now = self.is_now_fn(debug)
+        if element["artist"]:
+            if not (element["artist"][0] is None):
+                self.artist = element["artist"][0]
+        if element["title"]:
+            if not (element["title"][0] is None):
+                self.title = element["title"][0]
+        if element["location"]:
+            if not (element["location"][0] is None):
+                self.place = element["location"][0]["name"]
+        if element["duration"]:
+            if not(element["duration"][0] is None):
+                self.duration = element["duration"][0]
+                self.endtime = self.when + datetime.timedelta(0,int(self.duration))
+        if element["genre"]:
+            self.genre = element["genre"][0]
+
+        #self.is_now = self.is_now_fn(debug)
 
         # print(ends)
         self.is_valid = True

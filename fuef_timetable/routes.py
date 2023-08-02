@@ -6,7 +6,7 @@ from fuef_timetable.data import Data
 
 @app.route('/')
 def home():
-    data = Data("ablauf-2022.xlsx", today=True, debug=False)
+    data = Data(debug=True)
 
     return render_template(
         'main.html',
@@ -18,7 +18,7 @@ def home():
 
 @app.route('/bar')
 def bar():
-    data = Data("ablauf-2022.xlsx", today=True, debug=False, bar=True)
+    data = Data(debug=True)
 
     return render_template(
         'bar.html',

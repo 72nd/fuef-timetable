@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<!-- <script src="index.js"></script> -->
-		<main class="container">
+		<main class="container-fluid">
 			<div class="grid">
 				<div><h1 class="headline">Programm</h1></div>
 				<div><img src="static/logo.png" class="logo"/></div>
@@ -38,7 +38,11 @@
 						<td>{{ entry.title }}</td>
 						<td>{{ entry.place}}</td>
 						<td>{{ entry.genre }}</td>
+						{% if entry.duration %}
 						<td>{{ entry.duration}} Min</td>
+						{% else %}
+						<td></td>
+						{% endif %}
 					</tr>
 					{% endfor %}
 				</tbody>

@@ -8,121 +8,73 @@
 		<title>FüF Timetable</title>
 		<link rel="stylesheet" href="static/pico.min.css">
 		<link rel="stylesheet" href="static/style.css">
-        </head>
+		<script src="anime.min.js"></script>
+	</head>
+
 	<body>
 		<!-- <script src="index.js"></script> -->
-		<main class="container">
-			<div class="grid">
-				<div><h1 class="headline">Demnächst</h1></div>
-				<div><img src="static/logo.png" class="logo"/></div>
-			</div>
-			{% if entries is defined and entries|length > 0 %}
-			<table>
-				<thead>
-					<tr>
-						<th scope="col" style="font-size: 25px;"></th>
-						<th scope="col" style="font-size: 25px;">Zeit</th>
-						<th scope="col" style="font-size: 25px;">Künstler:in</th>
-						<th scope="col" style="font-size: 25px;">Titel</th>
-						<th scope="col" style="font-size: 25px;">Ort</th>
-						<th scope="col" style="font-size: 25px;">Genre</th>
-						<th scope="col" style="font-size: 25px;">Dauer</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for entry in entries %}
-					<tr>
-						<td style="font-size: 25px;">{% if entry.is_now %}→{% endif %}</td>
-						<td style="font-size: 25px;">{{ entry.when.strftime("%H:%M") }}</td>
-						<th scope="row" style="font-size: 25px;">{{ entry.artist}}</th>
-						<td style="font-size: 25px;">{{ entry.title }}</td>
-						<td style="font-size: 25px;">{{ entry.place}}</td>
-						<td style="font-size: 25px;">{{ entry.genre }}</td>
-						<td style="font-size: 25px;">{{ entry.duration}} Min</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-			{% else %}
-			<p><small><i>Das wars für heute, rebot/robot.</i></small></p>
-			{% endif %}
-			<p>
-			<h4>Die ganze Zeit:</h4>
-			</p>
-			<ul id="slides">
-				<li class="slide showing">
-					<div class="grid">
-  						<div><img width="50%" src="static/images/thomas.jpg" alt="No picture"></div>
-  						<div style="font-size: 25px;"><b>Rittersaal</b> Thomas Rusch: Digital Zeny</div>
-					</div>
-				</li>
-
-	                        <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/kanaltheater.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Galerie</b> Kanaltheater: Dialog erwünscht, Farbianart: Naturszene</div>
-                                        </div>
-                                </li>
-
-                                <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/fock.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Galerie</b> Jan Fock: Hausbesuche. Extended Mind</div>
-                                        </div>
-                                </li>
-
-
-                                <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/silvi.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Galerie</b> Silvi: Portraits aus dem Fläming</div>
-                                        </div>
-                                </li>
-
-
-                                <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/ying.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Kino</b> Yu Ying: Bon Apetitte</div>
-                                        </div>
-                                </li>
-
-                                <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/farbian.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Theaterstall</b></br><b>Gallerie</b>Farbianart: Naturszenen</div>
-                                        </div>
-                                </li>
-
-                                <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/adam.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Überall</b> Adam und die Physiker: Apocalypse Escape</div>
-                                        </div>
-                                </li>
-
-                                <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/filme.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Dschungel</b> Fläminger Filmfestival: Fläminer Filme</div>
-                                        </div>
-                                </li>
-
-                                <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/lpg.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Theaterstall</b> LPG. Dahnsdorfer Geschichten</div>
-                                        </div>
-                                </li>
-
-                                <li class="slide">
-                                        <div class="grid">
-                                                <div><img width="50%" src="static/images/fuef.jpg" alt="No picture"></div>
-                                                <div style="font-size: 25px;"><b>Ferkelstall</b> Jubiläumsausstellung. 10 Jahre Festival für Freunde, Digival</div>
-                                        </div>
-                                </li>
-			</ul>	
-		</main>
+		<div class="background">
+			<main class="container-fluid">
+				<div class="grid">
+					<div class="front"><h1 class="headline" style="font-size: 50px;">Demnächst</h1></div>
+					<div class="front"><img src="static/logo.png" class="logo"/></div>
+				</div>
+				{% if entries is defined and entries|length > 0 %}
+					<ul id="slides">
+						<li class="slide showing">
+							<table style="align: center;">
+								<thead>
+									<tr>
+										<th scope="col" style="font-size: 40px; color: white;"></th>
+										<th scope="col" style="font-size: 40px; color: white;">Zeit</th>
+										<th scope="col" style="font-size: 40px; color: white;">Künstler:in</th>
+										<th scope="col" style="font-size: 40px; color: white;">Titel</th>
+										<th scope="col" style="font-size: 40px; color: white;">Ort</th>
+										<th scope="col" style="font-size: 40px; color: white;">Genre</th>
+										<th scope="col" style="font-size: 40px; color: white;">Dauer</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for entry in entries %}
+									<tr>
+										<td style="font-size: 40px; color: white;">{% if entry.is_now %}→{% endif %}</td>
+										<td style="font-size: 40px; color: white;">{{ entry.when.strftime("%H:%M") }}</td>
+										<th scope="row" style="font-size: 40px; color: white;">{{ entry.artist}}</th>
+										<td style="font-size: 40px; color: white;">{{ entry.title }}</td>
+										<td style="font-size: 40px; color: white;">{{ entry.place}}</td>
+										<td style="font-size: 40px; color: white;">{{ entry.genre }}</td>
+										{% if entry.duration %}
+										<td style="font-size: 40px; color: white;">{{ ((entry.duration | int) / 60 | int | abs) }} Min</td>
+										{% else %}
+										<td style="font-size: 40px; color: white;"></td>
+										{% endif %}
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</li>
+						{% for entry in entries %}
+							<li class="slide">
+								<div class="row">
+									<div class="col-8" style="font-size: 100px; color: white;"><b>{{ entry.title}}</b></div>
+									{% if entry.duration %}
+										<div class="col-4" style="font-size: 70px; color: white;"><b>{{ entry.when.strftime("%H:%M") }}-{{ entry.endtime.strftime("%H:%M") }}</b></div>
+									{% else %}
+										<div class="col-4" style="font-size: 70px; color: white;"><b>{{ entry.when.strftime("%H:%M") }}</b></div>
+									{% endif %}
+								</div>
+								<div style="font-size: 70px; color: white;"></br></div>
+								<div style="font-size: 70px; color: white;">{{ entry.artist 	}}</div>
+								<div style="font-size: 70px; color: white;"><b>{{ entry.place}}</b></div>
+							</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+				{% endif %}
+			</main>
+		</div>
 	</body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="static/background-animation.js"></script>
 	<script src="static/nextSlide.js"></script>
 </html>
