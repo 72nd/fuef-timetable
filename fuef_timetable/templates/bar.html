@@ -15,41 +15,41 @@
 		<!-- <script src="index.js"></script> -->
 		<div class="background">
 			<main class="container-fluid">
-				<div class="grid">
-					<div class="front"><h1 class="headline" style="font-size: 50px;">Demnächst</h1></div>
-					<div class="front"><img src="static/logo.png" class="logo"/></div>
-				</div>
 				{% if entries is defined and entries|length > 0 %}
 					<ul id="slides">
 						<li class="slide showing">
+							<div class="grid">
+								<div class="front"><h1 class="headline" style="font-size: 50px;">Demnächst</h1></div>
+								<div class="front"><img src="static/logo.png" class="logo"/></div>
+							</div>
 							<table style="align: center;">
 								<thead>
 									<tr>
-										<th scope="col" style="font-size: 40px; color: white;"></th>
-										<th scope="col" style="font-size: 40px; color: white;">Zeit</th>
-										<th scope="col" style="font-size: 40px; color: white;">Künstler:in</th>
-										<th scope="col" style="font-size: 40px; color: white;">Titel</th>
-										<th scope="col" style="font-size: 40px; color: white;">Ort</th>
-										<th scope="col" style="font-size: 40px; color: white;">Genre</th>
-										<th scope="col" style="font-size: 40px; color: white;">Dauer   </th>
+										<th scope="col" style="font-size: 30px; color: white;"></th>
+										<th scope="col" style="font-size: 30px; color: white;">Zeit</th>
+										<th scope="col" style="font-size: 30px; color: white;">Künstler:in</th>
+										<th scope="col" style="font-size: 30px; color: white;">Titel</th>
+										<th scope="col" style="font-size: 30px; color: white;">Ort</th>
+										<th scope="col" style="font-size: 30px; color: white;">Genre</th>
+										<th scope="col" style="font-size: 30px; color: white;">Dauer   </th>
 									</tr>
 								</thead>
 								<tbody>
 									{% for entry in entries %}
 										{% if entry.when %}
 											<tr>
-												<td style="font-size: 40px; color: white;">{% if entry.is_now %}→{% endif %}</td>
+												<td style="font-size: 30px; color: white;">{% if entry.is_now %}→{% endif %}</td>
 												{% if entry.when %}
-													<td style="font-size: 40px; color: white;">{{ entry.when.strftime("%H:%M") }}</td>
+													<td style="font-size: 30px; color: white;">{{ entry.when.strftime("%H:%M") }}</td>
 												{% endif %}
-												<th scope="row" style="font-size: 40px; color: white;">{{ entry.artist}}</th>
-												<td style="font-size: 40px; color: white;">{{ entry.title }}</td>
-												<td style="font-size: 40px; color: white;">{{ entry.place}}</td>
-												<td style="font-size: 40px; color: white;">{{ entry.genre }}</td>
+												<th scope="row" style="font-size: 30px; color: white;">{{ entry.artist}}</th>
+												<td style="font-size: 30px; color: white;">{{ entry.title }}</td>
+												<td style="font-size: 30px; color: white;">{{ entry.place}}</td>
+												<td style="font-size: 30px; color: white;">{{ entry.genre }}</td>
 												{% if entry.duration %}
-												<td style="font-size: 40px; color: white;">{{ (((entry.duration | int) / 60) | round | int ) }} Min</td>
+												<td style="font-size: 30px; color: white;">{{ (((entry.duration | int) / 60) | round | int ) }} Min</td>
 												{% else %}
-												<td style="font-size: 40px; color: white;"></td>
+												<td style="font-size: 30px; color: white;"></td>
 												{% endif %}
 											</tr>
 										{% endif %}
@@ -59,21 +59,32 @@
 						</li>
 						{% for entry in entries %}
 							<li class="slide">
+								{% if entry.when %}
+									<div class="grid">
+										<div class="front"><h1 class="headline" style="font-size: 50px;">Demnächst</h1></div>
+										<div class="front"><img src="static/logo.png" class="logo"/></div>
+									</div>
+								{% else %}
+									<div class="grid">
+										<div class="front"><h1 class="headline" style="font-size: 50px;">Austellung/Installation</h1></div>
+										<div class="front"><img src="static/logo.png" class="logo"/></div>
+									</div>
+								{% endif %}
 								<div class="row">
-									<div class="col-8" style="font-size: 100px; color: white;"><b>{{ entry.title}}</b></div>
+									<div class="col-8" style="font-size: 80px; color: white;"><b>{{ entry.title}}</b></div>
 									{% if entry.when %}
 										{% if entry.duration %}
-											<div class="col-4" style="font-size: 70px; color: white;"><b>{{ entry.when.strftime("%H:%M") }}-{{ entry.endtime.strftime("%H:%M") }}</b></div>
+											<div class="col-4" style="font-size: 50px; color: white;"><b>{{ entry.when.strftime("%H:%M") }}-{{ entry.endtime.strftime("%H:%M") }}</b></div>
 										{% else %}
-											<div class="col-4" style="font-size: 70px; color: white;"><b>{{ entry.when.strftime("%H:%M") }}</b></div>
+											<div class="col-4" style="font-size: 50px; color: white;"><b>{{ entry.when.strftime("%H:%M") }}</b></div>
 										{% endif %}
 									{% else %}
-										<div style="font-size: 70px; color: white;"></br></div>
+										<div style="font-size: 50px; color: white;"></br></div>
 									{% endif %}
 								</div>
-								<div style="font-size: 70px; color: white;"></br></div>
-								<div style="font-size: 70px; color: white;">{{ entry.artist }}</div>
-								<div style="font-size: 70px; color: white;"><b>{{ entry.place }}</b></div>
+								<div style="font-size: 50px; color: white;"></br></div>
+								<div style="font-size: 50px; color: white;">{{ entry.artist }}</div>
+								<div style="font-size: 50px; color: white;"><b>{{ entry.place }}</b></div>
 							</li>
 						{% endfor %}
 					</ul>

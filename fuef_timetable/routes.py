@@ -18,7 +18,7 @@ def home():
 
 @app.route('/bar')
 def bar():
-    data = Data(debug=True)
+    data = Data(debug=False)
 
     return render_template(
         'bar.html',
