@@ -49,7 +49,7 @@
 												{% if entry.duration %}
 												<td style="font-size: 25px; color: white;">{{ (((entry.duration | int) / 60) | round | int ) }} Min</td>
 												{% else %}
-												<td style="font-size: 25px; color: white;"></td>
+													<td style="font-size: 25px; color: white;"></td>
 												{% endif %}
 											</tr>
 										{% endif %}
@@ -57,6 +57,7 @@
 								</tbody>
 							</table>
 						</li>
+						{% set indexSlides = 0 %}
 						{% for entry in entries %}
 							<li class="slide">
 								{% if entry.when %}
@@ -86,6 +87,49 @@
 								<div style="font-size: 50px; color: white;">{{ entry.artist }}</div>
 								<div style="font-size: 50px; color: white;"><b>{{ entry.place }}</b></div>
 							</li>
+							{% if loop.index % 3 == 0 and  loop.index != 0 %}
+								<li class="slide">
+									<div class="grid">
+										<div class="front"><h1 class="headline" style="font-size: 50px;">Heute</h1></div>
+										<div class="front"><img src="static/logo.png" class="logo"/></div>
+									</div>
+									<table style="align: center;">
+										<thead>
+											<tr>
+												<th scope="col" style="font-size: 25px; color: white;"></th>
+												<th scope="col" style="font-size: 25px; color: white;">Zeit</th>
+												<th scope="col" style="font-size: 25px; color: white;">Künstler:in</th>
+												<th scope="col" style="font-size: 25px; color: white;">Titel</th>
+												<th scope="col" style="font-size: 25px; color: white;">Ort</th>
+												<th scope="col" style="font-size: 25px; color: white;">Genre</th>
+												<th scope="col" style="font-size: 25px; color: white;">Dauer   </th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for entry in entries %}
+												{% if entry.when %}
+													<tr>
+														<td style="font-size: 25px; color: white;">{% if entry.is_now %}→{% endif %}</td>
+														{% if entry.when %}
+															<td style="font-size: 25px; color: white;">{{ entry.when.strftime("%H:%M") }}</td>
+														{% endif %}
+														<th scope="row" style="font-size: 25px; color: white;">{{ entry.artist}}</th>
+														<td style="font-size: 25px; color: white;">{{ entry.title }}</td>
+														<td style="font-size: 25px; color: white;">{{ entry.place}}</td>
+														<td style="font-size: 25px; color: white;">{{ entry.genre }}</td>
+														{% if entry.duration %}
+														<td style="font-size: 25px; color: white;">{{ (((entry.duration | int) / 60) | round | int ) }} Min</td>
+														{% else %}
+															<td style="font-size: 25px; color: white;"></td>
+														{% endif %}
+													</tr>
+												{% endif %}
+											{% endfor %}
+										</tbody>
+									</table>
+								</li>
+							{% endif %}
+							{% set indexSlides = indexSlides  + 1 %}
 						{% endfor %}
 					</ul>
 				{% else %}
